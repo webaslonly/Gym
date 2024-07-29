@@ -41,12 +41,12 @@ function Register() {
 		},
 	})
 
-	function onSubmit(values: z.infer<typeof registerSchema>) {
+	async function onSubmit(values: z.infer<typeof registerSchema>) {
 		const { email, password } = values
 		setIsLoading(true)
 
 		try {
-			const res = createUserWithEmailAndPassword(auth, email, password)
+			const res = await createUserWithEmailAndPassword(auth, email, password)
 			setUser(res.user)
 			navigate('/')
 		} catch (error) {
